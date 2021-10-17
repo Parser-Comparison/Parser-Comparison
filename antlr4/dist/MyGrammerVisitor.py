@@ -9,28 +9,18 @@ else:
 
 class MyGrammerVisitor(ParseTreeVisitor):
 
-    # Visit a parse tree produced by MyGrammerParser#NumberExpr.
-    def visitNumberExpr(self, ctx:MyGrammerParser.NumberExprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MyGrammerParser#ByeExpr.
-    def visitByeExpr(self, ctx:MyGrammerParser.ByeExprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MyGrammerParser#HelloExpr.
-    def visitHelloExpr(self, ctx:MyGrammerParser.HelloExprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MyGrammerParser#ParenExpr.
-    def visitParenExpr(self, ctx:MyGrammerParser.ParenExprContext):
+    # Visit a parse tree produced by MyGrammerParser#LetterExpr.
+    def visitLetterExpr(self, ctx:MyGrammerParser.LetterExprContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by MyGrammerParser#InfixExpr.
     def visitInfixExpr(self, ctx:MyGrammerParser.InfixExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammerParser#LineExpr.
+    def visitLineExpr(self, ctx:MyGrammerParser.LineExprContext):
         return self.visitChildren(ctx)
 
 

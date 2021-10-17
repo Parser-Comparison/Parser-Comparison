@@ -8,39 +8,12 @@ else:
 # This class defines a complete listener for a parse tree produced by MyGrammerParser.
 class MyGrammerListener(ParseTreeListener):
 
-    # Enter a parse tree produced by MyGrammerParser#NumberExpr.
-    def enterNumberExpr(self, ctx:MyGrammerParser.NumberExprContext):
+    # Enter a parse tree produced by MyGrammerParser#LetterExpr.
+    def enterLetterExpr(self, ctx:MyGrammerParser.LetterExprContext):
         pass
 
-    # Exit a parse tree produced by MyGrammerParser#NumberExpr.
-    def exitNumberExpr(self, ctx:MyGrammerParser.NumberExprContext):
-        pass
-
-
-    # Enter a parse tree produced by MyGrammerParser#ByeExpr.
-    def enterByeExpr(self, ctx:MyGrammerParser.ByeExprContext):
-        pass
-
-    # Exit a parse tree produced by MyGrammerParser#ByeExpr.
-    def exitByeExpr(self, ctx:MyGrammerParser.ByeExprContext):
-        pass
-
-
-    # Enter a parse tree produced by MyGrammerParser#HelloExpr.
-    def enterHelloExpr(self, ctx:MyGrammerParser.HelloExprContext):
-        pass
-
-    # Exit a parse tree produced by MyGrammerParser#HelloExpr.
-    def exitHelloExpr(self, ctx:MyGrammerParser.HelloExprContext):
-        pass
-
-
-    # Enter a parse tree produced by MyGrammerParser#ParenExpr.
-    def enterParenExpr(self, ctx:MyGrammerParser.ParenExprContext):
-        pass
-
-    # Exit a parse tree produced by MyGrammerParser#ParenExpr.
-    def exitParenExpr(self, ctx:MyGrammerParser.ParenExprContext):
+    # Exit a parse tree produced by MyGrammerParser#LetterExpr.
+    def exitLetterExpr(self, ctx:MyGrammerParser.LetterExprContext):
         pass
 
 
@@ -50,6 +23,15 @@ class MyGrammerListener(ParseTreeListener):
 
     # Exit a parse tree produced by MyGrammerParser#InfixExpr.
     def exitInfixExpr(self, ctx:MyGrammerParser.InfixExprContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammerParser#LineExpr.
+    def enterLineExpr(self, ctx:MyGrammerParser.LineExprContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammerParser#LineExpr.
+    def exitLineExpr(self, ctx:MyGrammerParser.LineExprContext):
         pass
 
 

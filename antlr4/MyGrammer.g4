@@ -1,13 +1,10 @@
 grammar MyGrammer;
-expr: left=expr op=('*'|'/') right=expr        # InfixExpr
-    | left=expr op=('+'|'-') right=expr        # InfixExpr
-    | atom=INT                                 # NumberExpr
-    | '(' expr ')'                             # ParenExpr 
-    | atom=HELLO                               # HelloExpr
-    | atom=BYE                                 # ByeExpr
+expr: left=expr right=expr                     # InfixExpr
+    | atom=LETTER                              # LetterExpr
     ;
 
-HELLO: ('hello'|'hi')  ;
-BYE  : ('bye'| 'tata') ;
-INT  : [0-9]+         ;
-WS   : [ \t]+ -> skip ;
+line: expr EOF                                 # LineExpr
+;                                
+
+LETTER: [a-z];
+WS: [ \n\r\t]+ -> skip ;
