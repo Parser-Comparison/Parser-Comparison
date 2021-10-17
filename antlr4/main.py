@@ -2,9 +2,9 @@ import sys
 import time
 from antlr4 import *
 from antlr4.tree.Trees import Trees
-from dist.MyGrammerLexer import MyGrammerLexer
-from dist.MyGrammerParser import MyGrammerParser
-from dist.MyGrammerVisitor import MyGrammerVisitor
+from dist_python.MyGrammerLexer import MyGrammerLexer
+from dist_python.MyGrammerParser import MyGrammerParser
+from dist_python.MyGrammerVisitor import MyGrammerVisitor
 
   
 class MyVisitor(MyGrammerVisitor):
@@ -30,7 +30,7 @@ if __name__ == "__main__":
         stream = CommonTokenStream(lexer)
         # parser
         parser = MyGrammerParser(stream)
-        tree = parser.expr()
+        tree = parser.s()
         # evaluator
         visitor = MyVisitor()
         output = visitor.visit(tree)

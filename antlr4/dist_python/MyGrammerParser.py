@@ -35,10 +35,10 @@ class MyGrammerParser ( Parser ):
 
     symbolicNames = [ "<INVALID>", "LETTER", "WS" ]
 
-    RULE_expr = 0
+    RULE_s = 0
     RULE_line = 1
 
-    ruleNames =  [ "expr", "line" ]
+    ruleNames =  [ "s", "line" ]
 
     EOF = Token.EOF
     LETTER=1
@@ -53,7 +53,7 @@ class MyGrammerParser ( Parser ):
 
 
 
-    class ExprContext(ParserRuleContext):
+    class SContext(ParserRuleContext):
         __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -62,16 +62,16 @@ class MyGrammerParser ( Parser ):
 
 
         def getRuleIndex(self):
-            return MyGrammerParser.RULE_expr
+            return MyGrammerParser.RULE_s
 
      
         def copyFrom(self, ctx:ParserRuleContext):
             super().copyFrom(ctx)
 
 
-    class LetterExprContext(ExprContext):
+    class LetterExprContext(SContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a MyGrammerParser.ExprContext
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a MyGrammerParser.SContext
             super().__init__(parser)
             self.atom = None # Token
             self.copyFrom(ctx)
@@ -94,19 +94,19 @@ class MyGrammerParser ( Parser ):
                 return visitor.visitChildren(self)
 
 
-    class InfixExprContext(ExprContext):
+    class InfixExprContext(SContext):
 
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a MyGrammerParser.ExprContext
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a MyGrammerParser.SContext
             super().__init__(parser)
-            self.left = None # ExprContext
-            self.right = None # ExprContext
+            self.left = None # SContext
+            self.right = None # SContext
             self.copyFrom(ctx)
 
-        def expr(self, i:int=None):
+        def s(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MyGrammerParser.ExprContext)
+                return self.getTypedRuleContexts(MyGrammerParser.SContext)
             else:
-                return self.getTypedRuleContext(MyGrammerParser.ExprContext,i)
+                return self.getTypedRuleContext(MyGrammerParser.SContext,i)
 
 
         def enterRule(self, listener:ParseTreeListener):
@@ -125,13 +125,13 @@ class MyGrammerParser ( Parser ):
 
 
 
-    def expr(self, _p:int=0):
+    def s(self, _p:int=0):
         _parentctx = self._ctx
         _parentState = self.state
-        localctx = MyGrammerParser.ExprContext(self, self._ctx, _parentState)
+        localctx = MyGrammerParser.SContext(self, self._ctx, _parentState)
         _prevctx = localctx
         _startState = 0
-        self.enterRecursionRule(localctx, 0, self.RULE_expr, _p)
+        self.enterRecursionRule(localctx, 0, self.RULE_s, _p)
         try:
             self.enterOuterAlt(localctx, 1)
             localctx = MyGrammerParser.LetterExprContext(self, localctx)
@@ -149,15 +149,15 @@ class MyGrammerParser ( Parser ):
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    localctx = MyGrammerParser.InfixExprContext(self, MyGrammerParser.ExprContext(self, _parentctx, _parentState))
+                    localctx = MyGrammerParser.InfixExprContext(self, MyGrammerParser.SContext(self, _parentctx, _parentState))
                     localctx.left = _prevctx
-                    self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
+                    self.pushNewRecursionContext(localctx, _startState, self.RULE_s)
                     self.state = 7
                     if not self.precpred(self._ctx, 2):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
                     self.state = 8
-                    localctx.right = self.expr(3) 
+                    localctx.right = self.s(3) 
                 self.state = 13
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,0,self._ctx)
@@ -194,8 +194,8 @@ class MyGrammerParser ( Parser ):
             super().__init__(parser)
             self.copyFrom(ctx)
 
-        def expr(self):
-            return self.getTypedRuleContext(MyGrammerParser.ExprContext,0)
+        def s(self):
+            return self.getTypedRuleContext(MyGrammerParser.SContext,0)
 
         def EOF(self):
             return self.getToken(MyGrammerParser.EOF, 0)
@@ -224,7 +224,7 @@ class MyGrammerParser ( Parser ):
             localctx = MyGrammerParser.LineExprContext(self, localctx)
             self.enterOuterAlt(localctx, 1)
             self.state = 14
-            self.expr(0)
+            self.s(0)
             self.state = 15
             self.match(MyGrammerParser.EOF)
         except RecognitionException as re:
@@ -240,14 +240,14 @@ class MyGrammerParser ( Parser ):
     def sempred(self, localctx:RuleContext, ruleIndex:int, predIndex:int):
         if self._predicates == None:
             self._predicates = dict()
-        self._predicates[0] = self.expr_sempred
+        self._predicates[0] = self.s_sempred
         pred = self._predicates.get(ruleIndex, None)
         if pred is None:
             raise Exception("No predicate with index:" + str(ruleIndex))
         else:
             return pred(localctx, predIndex)
 
-    def expr_sempred(self, localctx:ExprContext, predIndex:int):
+    def s_sempred(self, localctx:SContext, predIndex:int):
             if predIndex == 0:
                 return self.precpred(self._ctx, 2)
          

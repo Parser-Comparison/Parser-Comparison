@@ -1,10 +1,10 @@
 grammar MyGrammer;
-expr: left=expr right=expr                     # InfixExpr
-    | atom=LETTER                              # LetterExpr
+s   : left=s right=s                     # InfixExpr
+    | atom=LETTER                        # LetterExpr
     ;
 
-line: expr EOF                                 # LineExpr
+line: s EOF                                 # LineExpr
 ;                                
 
-LETTER: [a-z];
+LETTER: [a-zA-Z];
 WS: [ \n\r\t]+ -> skip ;
