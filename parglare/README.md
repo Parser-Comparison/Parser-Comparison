@@ -1,6 +1,6 @@
 ## Установка
 ```python3
-pip install parglare
+$ pip install parglare
 ```
 
 ## Описание функциональности
@@ -11,18 +11,18 @@ pip install parglare
 Также у парсера есть встроенный визуализатор в `.dot` файлы (которые потом можно преобразовать `.png`, `.pdf` файлы). Это можно сделать с помощью следующих команд:
 
 ```
-pglr --debug compile grammar.pg // дает детальную информацию о грамматике
+$ pglr --debug compile grammar.pg // дает детальную информацию о грамматике
 
 // для однозначных грамматик (LR парсер)
-pglr viz grammar.pg // визуализирует автомат
+$ pglr viz grammar.pg // визуализирует автомат
 
 // для неоднозначных грамматик (GLR парсер)
-pglr trace grammar.pg // показывает путь, по которому обходил GLR парсер
-pglr parse grammar.pg --glr // выводит леса и деревья парсинга (в зависимости от однозначности грамматики)
+$ pglr trace grammar.pg // показывает путь, по которому обходил GLR парсер
+$ pglr parse grammar.pg --glr // выводит леса и деревья парсинга (в зависимости от однозначности грамматики)
 
 // используется для преобразования .dot файлов
-dot -Tpng *.dot -O *.dot.png 
-dot -Tpdf *.dot -O *.dot.pdf
+$ dot -Tpng *.dot -O *.dot.png 
+$ dot -Tpdf *.dot -O *.dot.pdf
 ```
 
 Это лишь малая часть того, что умеет парсер. Вся функциональность описана в подробной [документации](http://www.igordejanovic.net/parglare/stable/)
