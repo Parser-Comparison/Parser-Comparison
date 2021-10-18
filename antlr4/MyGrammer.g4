@@ -1,5 +1,6 @@
 grammar MyGrammer;
-s   : left=s right=s                     # InfixExpr
+s   : left=s mid=s right=s               # InfixExpr
+    | left=s right=s                     # InfixExpr
     | atom=LETTER                        # LetterExpr
     ;
 

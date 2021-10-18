@@ -12,12 +12,14 @@ else:
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\4")
-        buf.write("\24\4\2\t\2\4\3\t\3\3\2\3\2\3\2\3\2\3\2\7\2\f\n\2\f\2")
-        buf.write("\16\2\17\13\2\3\3\3\3\3\3\3\3\2\3\2\4\2\4\2\2\2\22\2\6")
-        buf.write("\3\2\2\2\4\20\3\2\2\2\6\7\b\2\1\2\7\b\7\3\2\2\b\r\3\2")
-        buf.write("\2\2\t\n\f\4\2\2\n\f\5\2\2\5\13\t\3\2\2\2\f\17\3\2\2\2")
-        buf.write("\r\13\3\2\2\2\r\16\3\2\2\2\16\3\3\2\2\2\17\r\3\2\2\2\20")
-        buf.write("\21\5\2\2\2\21\22\7\2\2\3\22\5\3\2\2\2\3\r")
+        buf.write("\30\4\2\t\2\4\3\t\3\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3")
+        buf.write("\2\7\2\20\n\2\f\2\16\2\23\13\2\3\3\3\3\3\3\3\3\2\3\2\4")
+        buf.write("\2\4\2\2\2\27\2\6\3\2\2\2\4\24\3\2\2\2\6\7\b\2\1\2\7\b")
+        buf.write("\7\3\2\2\b\21\3\2\2\2\t\n\f\5\2\2\n\13\5\2\2\2\13\f\5")
+        buf.write("\2\2\6\f\20\3\2\2\2\r\16\f\4\2\2\16\20\5\2\2\5\17\t\3")
+        buf.write("\2\2\2\17\r\3\2\2\2\20\23\3\2\2\2\21\17\3\2\2\2\21\22")
+        buf.write("\3\2\2\2\22\3\3\2\2\2\23\21\3\2\2\2\24\25\5\2\2\2\25\26")
+        buf.write("\7\2\2\3\26\5\3\2\2\2\4\17\21")
         return buf.getvalue()
 
 
@@ -99,6 +101,7 @@ class MyGrammerParser ( Parser ):
         def __init__(self, parser, ctx:ParserRuleContext): # actually a MyGrammerParser.SContext
             super().__init__(parser)
             self.left = None # SContext
+            self.mid = None # SContext
             self.right = None # SContext
             self.copyFrom(ctx)
 
@@ -141,26 +144,47 @@ class MyGrammerParser ( Parser ):
             self.state = 5
             localctx.atom = self.match(MyGrammerParser.LETTER)
             self._ctx.stop = self._input.LT(-1)
-            self.state = 11
+            self.state = 15
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,0,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,1,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    localctx = MyGrammerParser.InfixExprContext(self, MyGrammerParser.SContext(self, _parentctx, _parentState))
-                    localctx.left = _prevctx
-                    self.pushNewRecursionContext(localctx, _startState, self.RULE_s)
-                    self.state = 7
-                    if not self.precpred(self._ctx, 2):
-                        from antlr4.error.Errors import FailedPredicateException
-                        raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                    self.state = 8
-                    localctx.right = self.s(3) 
-                self.state = 13
+                    self.state = 13
+                    self._errHandler.sync(self)
+                    la_ = self._interp.adaptivePredict(self._input,0,self._ctx)
+                    if la_ == 1:
+                        localctx = MyGrammerParser.InfixExprContext(self, MyGrammerParser.SContext(self, _parentctx, _parentState))
+                        localctx.left = _prevctx
+                        self.pushNewRecursionContext(localctx, _startState, self.RULE_s)
+                        self.state = 7
+                        if not self.precpred(self._ctx, 3):
+                            from antlr4.error.Errors import FailedPredicateException
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
+                        self.state = 8
+                        localctx.mid = self.s(0)
+                        self.state = 9
+                        localctx.right = self.s(4)
+                        pass
+
+                    elif la_ == 2:
+                        localctx = MyGrammerParser.InfixExprContext(self, MyGrammerParser.SContext(self, _parentctx, _parentState))
+                        localctx.left = _prevctx
+                        self.pushNewRecursionContext(localctx, _startState, self.RULE_s)
+                        self.state = 11
+                        if not self.precpred(self._ctx, 2):
+                            from antlr4.error.Errors import FailedPredicateException
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
+                        self.state = 12
+                        localctx.right = self.s(3)
+                        pass
+
+             
+                self.state = 17
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,0,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,1,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -223,9 +247,9 @@ class MyGrammerParser ( Parser ):
         try:
             localctx = MyGrammerParser.LineExprContext(self, localctx)
             self.enterOuterAlt(localctx, 1)
-            self.state = 14
+            self.state = 18
             self.s(0)
-            self.state = 15
+            self.state = 19
             self.match(MyGrammerParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -249,6 +273,10 @@ class MyGrammerParser ( Parser ):
 
     def s_sempred(self, localctx:SContext, predIndex:int):
             if predIndex == 0:
+                return self.precpred(self._ctx, 3)
+         
+
+            if predIndex == 1:
                 return self.precpred(self._ctx, 2)
          
 

@@ -113,6 +113,7 @@ public class MyGrammerParser extends Parser {
 	}
 	public static class InfixExprContext extends SContext {
 		public SContext left;
+		public SContext mid;
 		public SContext right;
 		public List<SContext> s() {
 			return getRuleContexts(SContext.class);
@@ -155,28 +156,47 @@ public class MyGrammerParser extends Parser {
 			((LetterExprContext)_localctx).atom = match(LETTER);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(11);
+			setState(15);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					{
-					_localctx = new InfixExprContext(new SContext(_parentctx, _parentState));
-					((InfixExprContext)_localctx).left = _prevctx;
-					pushNewRecursionContext(_localctx, _startState, RULE_s);
-					setState(7);
-					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(8);
-					((InfixExprContext)_localctx).right = s(3);
+					setState(13);
+					_errHandler.sync(this);
+					switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
+					case 1:
+						{
+						_localctx = new InfixExprContext(new SContext(_parentctx, _parentState));
+						((InfixExprContext)_localctx).left = _prevctx;
+						pushNewRecursionContext(_localctx, _startState, RULE_s);
+						setState(7);
+						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
+						setState(8);
+						((InfixExprContext)_localctx).mid = s(0);
+						setState(9);
+						((InfixExprContext)_localctx).right = s(4);
+						}
+						break;
+					case 2:
+						{
+						_localctx = new InfixExprContext(new SContext(_parentctx, _parentState));
+						((InfixExprContext)_localctx).left = _prevctx;
+						pushNewRecursionContext(_localctx, _startState, RULE_s);
+						setState(11);
+						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+						setState(12);
+						((InfixExprContext)_localctx).right = s(3);
+						}
+						break;
 					}
 					} 
 				}
-				setState(13);
+				setState(17);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			}
 			}
 		}
@@ -225,9 +245,9 @@ public class MyGrammerParser extends Parser {
 			_localctx = new LineExprContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(14);
+			setState(18);
 			s(0);
-			setState(15);
+			setState(19);
 			match(EOF);
 			}
 		}
@@ -252,18 +272,21 @@ public class MyGrammerParser extends Parser {
 	private boolean s_sempred(SContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
+			return precpred(_ctx, 3);
+		case 1:
 			return precpred(_ctx, 2);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\4\24\4\2\t\2\4\3"+
-		"\t\3\3\2\3\2\3\2\3\2\3\2\7\2\f\n\2\f\2\16\2\17\13\2\3\3\3\3\3\3\3\3\2"+
-		"\3\2\4\2\4\2\2\2\22\2\6\3\2\2\2\4\20\3\2\2\2\6\7\b\2\1\2\7\b\7\3\2\2\b"+
-		"\r\3\2\2\2\t\n\f\4\2\2\n\f\5\2\2\5\13\t\3\2\2\2\f\17\3\2\2\2\r\13\3\2"+
-		"\2\2\r\16\3\2\2\2\16\3\3\2\2\2\17\r\3\2\2\2\20\21\5\2\2\2\21\22\7\2\2"+
-		"\3\22\5\3\2\2\2\3\r";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\4\30\4\2\t\2\4\3"+
+		"\t\3\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\3\2\7\2\20\n\2\f\2\16\2\23\13\2\3"+
+		"\3\3\3\3\3\3\3\2\3\2\4\2\4\2\2\2\27\2\6\3\2\2\2\4\24\3\2\2\2\6\7\b\2\1"+
+		"\2\7\b\7\3\2\2\b\21\3\2\2\2\t\n\f\5\2\2\n\13\5\2\2\2\13\f\5\2\2\6\f\20"+
+		"\3\2\2\2\r\16\f\4\2\2\16\20\5\2\2\5\17\t\3\2\2\2\17\r\3\2\2\2\20\23\3"+
+		"\2\2\2\21\17\3\2\2\2\21\22\3\2\2\2\22\3\3\2\2\2\23\21\3\2\2\2\24\25\5"+
+		"\2\2\2\25\26\7\2\2\3\26\5\3\2\2\2\4\17\21";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
