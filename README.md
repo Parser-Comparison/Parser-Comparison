@@ -13,10 +13,10 @@ S -> aS | a
 Так неоднозначностей возникать не будет и выражение разбирается за $\mathcal{O}(n)$
 
 ## Используемые генераторы и их реализации
-* [antlr4]() (Adaptive LL(*))
-* [lark]() (Earley)
-* [parglare]() (GLR)
-* [yacc]() (LALR(1))
+* [antlr4](https://github.com/alexbuyan/fl-2021-hse-win/tree/proj/antlr4) (Adaptive LL(*))
+* [lark](https://github.com/alexbuyan/fl-2021-hse-win/tree/proj/lark) (Earley)
+* [parglare](https://github.com/alexbuyan/fl-2021-hse-win/tree/proj/parglare) (GLR)
+* [yacc](https://github.com/alexbuyan/fl-2021-hse-win/blob/proj/yacc/) (LALR(1))
 
 Подробнее про работу каждого из генераторов можно почитать по соответствующей ссылке.
 
