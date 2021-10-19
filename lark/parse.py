@@ -37,7 +37,7 @@ class CalculateTree(Transformer):
             #ambiguity_parser2.is_all_a = False
 parser_name = "earley"
 ambiguity_parser = Lark(ambiguity_grammar, start="expr", parser =parser_name)
-ambiguity_parser2 =  Lark(ambiguity_grammar, start="expr", parser =parser_name)
+ambiguity_parser2 =  Lark(ambiguity_grammar2, start="expr", parser =parser_name)
 ambiguity = ambiguity_parser.parse
 ambiguity2 = ambiguity_parser2.parse
 def make_png(filename, s):
@@ -45,31 +45,30 @@ def make_png(filename, s):
 def make_dot(filename, s):
     tree.pydot__tree_to_dot( ambiguity(s), filename)
 def main():
-    if (len(sys.argv)<3):
-                print("not enough arguments!")
+    if (len(sys.argv)!=4):
+                print("Wrong format!")
                 exit(0)
-    f = open(sys.argv[2], 'w')
-    f.write(parser_name+" parser\n")
-    i = 10
+    fout = open(sys.argv[3], 'w')
+    sys.stdin = open(sys.argv[2], 'r')
+    fout.write(parser_name+" parser\n")
     while True:
-        start_time=0
         try:
-            s = input('> ')
+            line = input()
         except EOFError:
             break
         try:
             start_time = time.time() 
-            ambiguity(s)   
-            f.write("%s \n  --> %s seconds \n" % (s, time.time() - start_time)) 
-            make_png(sys.argv[1], s)  
+            ambiguity(line)   
+            fout.write("%s \n  --> %s seconds \n" % (line, time.time() - start_time)) 
+            make_png(sys.argv[1], line)  
             #make_dot(sys.argv[2], s)
         except Exception as e:
-            f.write("it is impossible to build tree: some symbols are not correct, read grammar requirements!\n")    
+            fout.write("it is impossible to build tree: some symbols are not correct, read grammar requirements!\n")    
         try:
-            ambiguity2(s)
-            f.write("input word belongs to the language\n")
+            ambiguity2(line)
+            fout.write("input word belongs to the language\n")
         except Exception as e:
-            f.write("input word does not belong to the language\n")  
+            fout.write("input word does not belong to the language\n")  
          
 
 
