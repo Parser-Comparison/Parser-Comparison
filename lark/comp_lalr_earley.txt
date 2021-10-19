@@ -1,0 +1,12 @@
+number of a: 10 
+ Earley parser --> 0.00121402740479 seconds 
+Lalr parser --> 0.00028395652771 seconds
+ 
+number of a: 100 
+ Earley parser --> 0.0651278495789 seconds 
+Lalr parser --> 0.00073504447937 seconds
+ 
+number of a: 1000 
+ Earley parser --> 24.207887888 seconds 
+Lalr parser --> 0.00907111167908 seconds
+ 

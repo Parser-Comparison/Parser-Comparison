@@ -1,0 +1,34 @@
+cyk parser
+number of a: 1 
+ 0.000239133834839 seconds
+ 
+number of a: 11 
+ 0.00579810142517 seconds
+ 
+number of a: 21 
+ 0.0494251251221 seconds
+ 
+number of a: 31 
+ 0.171337842941 seconds
+ 
+number of a: 41 
+ 0.420851945877 seconds
+ 
+number of a: 51 
+ 0.837104082108 seconds
+ 
+number of a: 61 
+ 1.43934893608 seconds
+ 
+number of a: 71 
+ 2.3062069416 seconds
+ 
+number of a: 81 
+ 3.44750714302 seconds
+ 
+number of a: 91 
+ 4.94948101044 seconds
+ 
+number of a: 101 
+ 6.79764795303 seconds
+ 

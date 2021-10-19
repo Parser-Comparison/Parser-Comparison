@@ -1,0 +1,4 @@
+earley parser
+aaaaaaaaaa 
+  --> 0.00607991218567 seconds 
+input word belongs to the language
