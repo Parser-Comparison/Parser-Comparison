@@ -1,0 +1,117 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Expr
+Rule 1     Expr -> Expr Expr Expr
+Rule 2     Expr -> Expr Expr
+Rule 3     Expr -> Letter
+Rule 4     Letter -> LETTER
+
+Terminals, with rules where they appear
+
+LETTER               : 4
+error                : 
+
+Nonterminals, with rules where they appear
+
+Expr                 : 1 1 1 2 2 0
+Letter               : 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Expr
+    (1) Expr -> . Expr Expr Expr
+    (2) Expr -> . Expr Expr
+    (3) Expr -> . Letter
+    (4) Letter -> . LETTER
+
+    LETTER          shift and go to state 3
+
+    Expr                           shift and go to state 1
+    Letter                         shift and go to state 2
+
+state 1
+
+    (0) S' -> Expr .
+    (1) Expr -> Expr . Expr Expr
+    (2) Expr -> Expr . Expr
+    (1) Expr -> . Expr Expr Expr
+    (2) Expr -> . Expr Expr
+    (3) Expr -> . Letter
+    (4) Letter -> . LETTER
+
+    LETTER          shift and go to state 3
+
+    Expr                           shift and go to state 4
+    Letter                         shift and go to state 2
+
+state 2
+
+    (3) Expr -> Letter .
+
+    LETTER          reduce using rule 3 (Expr -> Letter .)
+    $end            reduce using rule 3 (Expr -> Letter .)
+
+
+state 3
+
+    (4) Letter -> LETTER .
+
+    LETTER          reduce using rule 4 (Letter -> LETTER .)
+    $end            reduce using rule 4 (Letter -> LETTER .)
+
+
+state 4
+
+    (1) Expr -> Expr Expr . Expr
+    (2) Expr -> Expr Expr .
+    (1) Expr -> Expr . Expr Expr
+    (2) Expr -> Expr . Expr
+    (1) Expr -> . Expr Expr Expr
+    (2) Expr -> . Expr Expr
+    (3) Expr -> . Letter
+    (4) Letter -> . LETTER
+
+  ! shift/reduce conflict for LETTER resolved as shift
+    $end            reduce using rule 2 (Expr -> Expr Expr .)
+    LETTER          shift and go to state 3
+
+  ! LETTER          [ reduce using rule 2 (Expr -> Expr Expr .) ]
+
+    Expr                           shift and go to state 5
+    Letter                         shift and go to state 2
+
+state 5
+
+    (1) Expr -> Expr Expr Expr .
+    (1) Expr -> Expr Expr . Expr
+    (2) Expr -> Expr Expr .
+    (1) Expr -> Expr . Expr Expr
+    (2) Expr -> Expr . Expr
+    (1) Expr -> . Expr Expr Expr
+    (2) Expr -> . Expr Expr
+    (3) Expr -> . Letter
+    (4) Letter -> . LETTER
+
+  ! reduce/reduce conflict for LETTER resolved using rule 1 (Expr -> Expr Expr Expr .)
+  ! reduce/reduce conflict for $end resolved using rule 1 (Expr -> Expr Expr Expr .)
+  ! shift/reduce conflict for LETTER resolved as shift
+    $end            reduce using rule 1 (Expr -> Expr Expr Expr .)
+    LETTER          shift and go to state 3
+
+  ! LETTER          [ reduce using rule 1 (Expr -> Expr Expr Expr .) ]
+  ! LETTER          [ reduce using rule 2 (Expr -> Expr Expr .) ]
+  ! $end            [ reduce using rule 2 (Expr -> Expr Expr .) ]
+
+    Expr                           shift and go to state 5
+    Letter                         shift and go to state 2
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for LETTER in state 4 resolved as shift
+WARNING: shift/reduce conflict for LETTER in state 5 resolved as shift
+WARNING: reduce/reduce conflict in state 5 resolved using rule (Expr -> Expr Expr Expr)
+WARNING: rejected rule (Expr -> Expr Expr) in state 5
