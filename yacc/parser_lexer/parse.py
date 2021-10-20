@@ -18,10 +18,7 @@ def p_letter(p):
     '''Letter : LETTER'''
 
     #print('current letter: ' + p[1])
-    if (p[1] == 'a'):
-        p[0] = True
-    else:    
-        p[0] = False              
+    p[0] = (p[1] == 'a')            
 
 def p_error(p):
   print("Syntax error\n")          

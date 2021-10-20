@@ -6,7 +6,6 @@ tokens = ['LETTER']
 
 def t_LETTER(t):
   r'[a-zA-Z]'
-  t.value = t.value
   return t
 
 t_ignore = ' \t'
