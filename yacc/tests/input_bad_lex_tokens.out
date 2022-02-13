@@ -1,0 +1,4 @@
+LexToken(LETTER,'a',1,0)
+LexToken(LETTER,'b',1,1)
+LexToken(LETTER,'a',1,2)
+LexToken(LETTER,'b',1,3)

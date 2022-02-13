@@ -1,0 +1,88 @@
+
+    digraph parglare_trace {
+    rankdir=LR
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+head_0_0 [label="0. 0:S'"];
+head_1_2 [label="1. 2:letter"];
+head_1_1 [label="1. 1:S"];
+head_1_2 -> head_0_0 [label="1"];
+head_0_0 -> head_1_2 [label="1.1 S:letter(a)" color="red" style="dashed"];
+head_1_1 -> head_0_0 [label="1"];
+head_1_2 -> head_1_1 [label="1.2 R:3: S = letter" color="red" style="dashed"];
+head_2_2 [label="2. 2:letter"];
+head_2_3 [label="2. 3:S"];
+head_2_1 [label="2. 1:S"];
+head_2_2 -> head_1_1 [label="1"];
+head_1_1 -> head_2_2 [label="2.1 S:letter(a)" color="red" style="dashed"];
+head_2_3 -> head_1_1 [label="1"];
+head_2_2 -> head_2_3 [label="2.2 R:3: S = letter" color="red" style="dashed"];
+head_2_1 -> head_0_0 [label="1"];
+head_2_3 -> head_2_1 [label="2.3 R:2: S = S S" color="red" style="dashed"];
+head_3_2 [label="3. 2:letter"];
+head_3_3 [label="3. 3:S"];
+head_3_4 [label="3. 4:S"];
+head_3_1 [label="3. 1:S"];
+head_3_2 -> head_2_1 [label="1"];
+head_2_1 -> head_3_2 [label="3.1 S:letter(a)" color="red" style="dashed"];
+head_3_2 -> head_2_3 [label="1"];
+head_2_3 -> head_3_2 [label="3.2 S:letter(a)" color="red" style="dashed"];
+head_3_3 -> head_2_1 [label="1"];
+head_3_2 -> head_3_3 [label="3.3 R:3: S = letter" color="red" style="dashed"];
+head_3_4 -> head_2_3 [label="1"];
+head_3_2 -> head_3_4 [label="3.4 R:3: S = letter" color="red" style="dashed"];
+head_3_1 -> head_0_0 [label="3"];
+head_3_4 -> head_3_1 [label="3.5 R:1: S = S S S" color="red" style="dashed"];
+head_3_3 -> head_1_1 [label="1"];
+head_3_4 -> head_3_3 [label="3.6 R:2: S = S S" color="red" style="dashed"];
+head_3_3 -> head_3_1 [label="3.7 R:2: S = S S" color="red" style="dashed"];
+head_3_3 -> head_3_1 [label="3.8 R:2: S = S S" color="red" style="dashed"];
+
+head_4_1 -> ACCEPT;
+head_4_2 [label="4. 2:letter"];
+head_4_4 [label="4. 4:S"];
+head_4_3 [label="4. 3:S"];
+head_4_1 [label="4. 1:S"];
+head_4_2 -> head_3_3 [label="1"];
+head_3_3 -> head_4_2 [label="4.1 S:letter(a)" color="red" style="dashed"];
+head_4_2 -> head_3_1 [label="1"];
+head_3_1 -> head_4_2 [label="4.2 S:letter(a)" color="red" style="dashed"];
+head_4_2 -> head_3_4 [label="1"];
+head_3_4 -> head_4_2 [label="4.3 S:letter(a)" color="red" style="dashed"];
+head_4_4 -> head_3_3 [label="1"];
+head_4_2 -> head_4_4 [label="4.4 R:3: S = letter" color="red" style="dashed"];
+head_4_3 -> head_3_1 [label="1"];
+head_4_2 -> head_4_3 [label="4.5 R:3: S = letter" color="red" style="dashed"];
+head_4_4 -> head_3_4 [label="1"];
+head_4_2 -> head_4_4 [label="4.6 R:3: S = letter" color="red" style="dashed"];
+head_4_1 -> head_0_0 [label="6"];
+head_4_3 -> head_4_1 [label="4.7 R:2: S = S S" color="red" style="dashed"];
+head_4_3 -> head_1_1 [label="3"];
+head_4_4 -> head_4_3 [label="4.8 R:1: S = S S S" color="red" style="dashed"];
+head_4_3 -> head_4_1 [label="4.9 R:2: S = S S" color="red" style="dashed"];
+head_4_4 -> head_4_1 [label="4.10 R:1: S = S S S" color="red" style="dashed"];
+head_4_4 -> head_4_1 [label="4.11 R:1: S = S S S" color="red" style="dashed"];
+head_4_4 -> head_2_3 [label="1"];
+head_4_4 -> head_4_4 [label="4.12 R:2: S = S S" color="red" style="dashed"];
+head_4_4 -> head_4_1 [label="4.13 R:1: S = S S S" color="red" style="dashed"];
+head_4_4 -> head_4_3 [label="4.14 R:2: S = S S" color="red" style="dashed"];
+head_4_3 -> head_2_1 [label="1"];
+head_4_4 -> head_4_3 [label="4.15 R:2: S = S S" color="red" style="dashed"];
+head_4_3 -> head_4_1 [label="4.16 R:2: S = S S" color="red" style="dashed"];
+head_4_4 -> head_4_3 [label="4.17 R:2: S = S S" color="red" style="dashed"];
+
+node [shape=none, style=""]
+{rank=same; 0;  head_0_0;}
+{rank=same; 1;  head_1_2; head_1_1;}
+{rank=same; 2;  head_2_2; head_2_3; head_2_1;}
+{rank=same; 3;  head_3_2; head_3_3; head_3_4; head_3_1;}
+{rank=same; 4;  head_4_2; head_4_4; head_4_3; head_4_1;}
+0->1->2->3->4[arrowhead=none];
+}
